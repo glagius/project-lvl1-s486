@@ -1,0 +1,32 @@
+{
+  "name": "hexlet-bg-elb",
+  "version": "1.0.0",
+  "description": "Hexlet first project",
+  "main": "src/index.js",
+  "bin": {
+    "brainGames": "./src/bin/brain-games.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BabayevEldar/project-lvl1-s486.git"
+  },
+  "keywords": [
+    "brain-games",
+    "hexlet"
+  ],
+  "author": "Babaev Eldar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BabayevEldar/project-lvl1-s486/issues"
+  },
+  "homepage": "https://github.com/BabayevEldar/project-lvl1-s486#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4"
+  }
+}
