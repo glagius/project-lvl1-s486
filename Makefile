@@ -5,7 +5,10 @@ start:
 		npx babel-node 'src/bin/brain-games.js'
 
 lint: 
-		npx eslint
-		
-publish:
+		npx eslint 'src'
+
+even: 
+		npx babel-node 'src/bin/brain-even.js'
+
+publish: lint
 				npm publish

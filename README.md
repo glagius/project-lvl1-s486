@@ -9,3 +9,10 @@ $ make install
 # Start
 
 $ make start
+
+# Play 'even' game
+
+$ make even
+
+# Some console tutorial
+https://asciinema.org/connect/1902cc8e-27ad-4cb8-81fb-815e6fad6aab
