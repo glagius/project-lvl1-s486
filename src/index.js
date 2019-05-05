@@ -26,7 +26,7 @@ const game = (data, questions, iter = 0) => {
   // Here is string that user writes in console
   const turnAnswer = data.turn(turnQuestion);
 
-  const corrAnswer = data.corrAnswer(turnQuestion);
+  const corrAnswer = data.corrAnswer(turnQuestion).toString();
   const correct = turnAnswer === corrAnswer ? true : false;
   
   if (correct) {
