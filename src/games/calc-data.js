@@ -1,4 +1,4 @@
-import { randomNum } from '../index.js';
+import { randomNum, getNums } from '../index.js';
 
 const type = 'calc';
 const getExpressionType = () => {
@@ -20,7 +20,7 @@ const getExpression = () => {
   return operations[type];
 }
 const getExpressionResult = (str) => {
-  const [num1, num2] = str.match(/\d+/g).map(el => Number(el));
+  const [num1, num2] = getNums(str);
   const [, type] = str.match(/\W/g);
   const result = {
     '+': num1 + num2,
@@ -29,5 +29,6 @@ const getExpressionResult = (str) => {
   };
   return result[type];
 };
+
 
 export { type, getExpression, getExpressionType, getExpressionResult };

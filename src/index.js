@@ -3,6 +3,7 @@ import readlineSync from 'readline-sync';
 const askQuestion = (text) => readlineSync.question(text);
 const userName = () => askQuestion(questions.user.name);
 const randomNum = () => Math.ceil(Math.random() * 100);
+const getNums = (str) => str.match(/\d+/g).map(el => Number(el));
 
 const gameTurn = (turnQuestion) => {
   console.log(questions.game.q, turnQuestion);
@@ -38,7 +39,6 @@ const game = (data, questions, iter = 0) => {
   return; 
 };
 
-
 const questions = {
   'user': {
     'name': 'What is your name? '
@@ -56,6 +56,9 @@ const questions = {
   },
   'calc': {
     'rules': 'Welcome to the Brain Games! \nWhat is the result of the expression?'
+  }, 
+  'gcd': {
+    'rules': 'Welcome to the Brain Games! \nFind the greatest common divisor of given numbers.'
   }
 };
-export  { questions, gameData, gameTurn, game, userName, randomNum };
+export  { questions, gameData, gameTurn, game, userName, randomNum, getNums };
