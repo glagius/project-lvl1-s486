@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { questions, gameData, gameTurn, game, userName } from '../index';
 import { type, getExpression, getExpressionResult as corrAnswer } from '../games/calc-data.js';
 
