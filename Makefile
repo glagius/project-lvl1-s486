@@ -10,5 +10,8 @@ lint:
 even: 
 		npx babel-node 'src/bin/brain-even.js'
 
+calc:
+		npx babel-node 'src/bin/brain-calc.js'
+
 publish: lint
 				npm publish

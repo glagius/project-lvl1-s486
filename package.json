@@ -1,11 +1,12 @@
 {
   "name": "elb-braingames_hexproj",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hexlet first project",
   "main": "dist/index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js"
   },
   "files": [
     "dist"
