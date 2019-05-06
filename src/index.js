@@ -1,9 +1,19 @@
 import readlineSync from 'readline-sync';
 
 const askQuestion = (text) => readlineSync.question(text);
-const userName = () => askQuestion(questions.user.name);
-const randomNum = () => Math.ceil(Math.random() * 100);
 const getNums = (str) => str.match(/\d+/g).map(el => Number(el));
+const userName = () => askQuestion(questions.user.name);
+const randomNum = (grade) => Math.ceil(Math.random() * grade);
+const hideElement = (num, arr) => arr.map((el, index) => index === num - 1 ? el = '..' : el);
+
+const generateNums = (init, dif, func, amount = 10) => {
+  const arr = [];
+  for (let i = 1; i <= amount; i++) {
+    arr.push(func(init, dif, i))
+  }
+  return arr;
+}
+
 
 const gameTurn = (turnQuestion) => {
   console.log(questions.game.q, turnQuestion);
@@ -59,6 +69,19 @@ const questions = {
   }, 
   'gcd': {
     'rules': 'Welcome to the Brain Games! \nFind the greatest common divisor of given numbers.'
+  },
+  'arithprog': {
+    'rules': 'Welcome to the Brain Games! \nWhat number is missing in the progresgeomprog'
   }
 };
-export  { questions, gameData, gameTurn, game, userName, randomNum, getNums };
+export  { 
+  questions, 
+  gameData, 
+  gameTurn, 
+  game, 
+  userName, 
+  randomNum, 
+  getNums, 
+  generateNums, 
+  hideElement
+  };

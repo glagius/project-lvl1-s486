@@ -16,5 +16,8 @@ calc:
 gcd:
 		npx babel-node 'src/bin/brain-gcd.js'
 
+arithprog:
+		npx babel-node 'src/bin/brain-arithprog.js'
+
 publish: lint
 				npm publish
