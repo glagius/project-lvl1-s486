@@ -3,18 +3,18 @@ import { randomNum, generateNums, hideElement } from '../index.js';
 const arithprog = (init, dif, i) => init + (i-1)*dif;
 // const geomprog = (init, dif, i) => init * dif ** (i - 1);
 const currIndex = (arr) => arr.findIndex(el => el === ('..'))
-const countDiff = (arr, indx, type = 'arith') => {
-  const dir = indx >= arr.length - 3 ? false : true;
+const countDiff = (arr, index) => {
+  const dir = index >= arr.length - 3 ? false : true;
   return dir ? 
-    (arr[indx + 2] - arr[indx + 1]) 
+    (arr[index + 2] - arr[index + 1]) 
     : 
-    (arr[indx - 1] - arr[indx - 2])
+    (arr[index - 1] - arr[index - 2])
 };
-const currAnswer = (arr, indx, diff, type = 'arith') => {
-  if (indx === 0) {
+const currAnswer = (arr, index, diff) => {
+  if (index === 0) {
     return arr[1] - diff;
   }
-  return arr[0] + diff*(indx)
+  return arr[0] + diff*(index)
 }
 const type = 'arithprog';
 

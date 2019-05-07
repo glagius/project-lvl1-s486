@@ -19,5 +19,8 @@ gcd:
 arithprog:
 		npx babel-node 'src/bin/brain-arithprog.js'
 
+prime: 
+		npx babel-node 'src/bin/brain-prime.js'
+
 publish: lint
 				npm publish

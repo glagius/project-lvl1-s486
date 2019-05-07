@@ -3,7 +3,7 @@ import readlineSync from 'readline-sync';
 const askQuestion = (text) => readlineSync.question(text);
 const getNums = (str) => str.match(/\d+/g).map(el => Number(el));
 const userName = () => askQuestion(questions.user.name);
-const randomNum = (grade) => Math.ceil(Math.random() * grade);
+const randomNum = (grade = 100) => Math.ceil(Math.random() * grade);
 const hideElement = (num, arr) => arr.map((el, index) => index === num - 1 ? el = '..' : el);
 
 const generateNums = (init, dif, func, amount = 10) => {
@@ -72,6 +72,9 @@ const questions = {
   },
   'arithprog': {
     'rules': 'Welcome to the Brain Games! \nWhat number is missing in the progresgeomprog'
+  },
+  'prime': {
+    'rules': 'Welcome to the Brain Games! \nAnswer "yes" if given number is prime. Otherwise answer "no".'
   }
 };
 export  { 

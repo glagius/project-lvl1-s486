@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { askQuestion, questions } from '../index';
+import { userName } from '../index';
 
 console.log('Welcome to my first console game!');
-const userName = askQuestion(questions.user.name);
+const user = userName();
 
-console.log(`Hello ${userName} !`);
+console.log(`Hello ${user} !`);
 
