@@ -5,7 +5,7 @@
 # Setup
 
 $ make install
-
+ 
 # Start
 
 $ make start
@@ -14,24 +14,28 @@ $ make start
 
 $ brain-even
 
-[![asciicast](https://asciinema.org/a/244796.svg)](https://asciinema.org/a/244796)
-[![asciicast](https://asciinema.org/a/244797.svg)](https://asciinema.org/a/244797)
+[![asciicast](https://asciinema.org/a/x2YDNeMnD9GYA4QiTVEh49SPQ.svg)](https://asciinema.org/a/x2YDNeMnD9GYA4QiTVEh49SPQ)
 
 # Play 'calculation' game
 
 $ brain-calc
 
+[![asciicast](https://asciinema.org/a/244940.svg)](https://asciinema.org/a/244940)
+
 # Play 'guess greatest common divisor' game
 
 $ brain-gcd
+
+[![asciicast](https://asciinema.org/a/244941.svg)](https://asciinema.org/a/244941)
 
 # Play 'guess missing number in the progression' game
 
 $ brain-arithprog
 
+[![asciicast](https://asciinema.org/a/244942.svg)](https://asciinema.org/a/244942)
+
 # Play 'is it prime number?' game
 
 $ brain-prime
 
-# Some console tutorial
-https://asciinema.org/connect/1902cc8e-27ad-4cb8-81fb-815e6fad6aab
+[![asciicast](https://asciinema.org/a/244943.svg)](https://asciinema.org/a/244943)

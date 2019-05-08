@@ -14,7 +14,6 @@ const generateNums = (init, dif, func, amount = 10) => {
   return arr;
 }
 
-
 const gameTurn = (turnQuestion) => {
   console.log(questions.game.q, turnQuestion);
   return askQuestion(questions.game.answer);
@@ -35,9 +34,8 @@ const game = (data, questions, iter = 0) => {
   const turnQuestion = data.turnQuestion();
 
   // Here is string that user writes in console
-  const turnAnswer = data.turn(turnQuestion);
-
-  const corrAnswer = data.corrAnswer(turnQuestion).toString();
+  const turnAnswer = data.turn(turnQuestion).toLowerCase();
+  const corrAnswer = data.corrAnswer(turnQuestion).toString().toLowerCase();
   const correct = turnAnswer === corrAnswer ? true : false;
   
   if (correct) {
@@ -71,7 +69,7 @@ const questions = {
     'rules': 'Welcome to the Brain Games! \nFind the greatest common divisor of given numbers.'
   },
   'arithprog': {
-    'rules': 'Welcome to the Brain Games! \nWhat number is missing in the progresgeomprog'
+    'rules': 'Welcome to the Brain Games! \nWhat number is missing in the progression.'
   },
   'prime': {
     'rules': 'Welcome to the Brain Games! \nAnswer "yes" if given number is prime. Otherwise answer "no".'
