@@ -1,9 +1,5 @@
 #!/usr/bin/env node
-import { questions, gameData, gameTurn, game, userName } from '../index';
-import { type, getExpression, getExpressionResult as corrAnswer } from '../games/calc-data.js';
+import { startGame } from '..';
+import { type, gameMethods, gameQuestions as questions } from '../games/calc-data';
 
-console.log(questions[type].rules);
-const user = userName();
-const data = gameData(user, gameTurn, getExpression, corrAnswer);
-
-game(data, questions);
+startGame(type, gameMethods, questions);

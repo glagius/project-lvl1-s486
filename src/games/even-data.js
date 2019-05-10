@@ -1,4 +1,16 @@
-const type = 'even';
-const corrAnswer = (item) => item % 2 === 0 ? 'yes' : 'no'; 
+import { randomNum, questions } from '..';
 
-export { type, corrAnswer }
+const type = 'even';
+
+const gameMethods = {
+  getExpression: randomNum,
+  getAnswer: item => (item % 2 === 0 ? 'yes' : 'no'),
+};
+const gameQuestions = {
+  ...questions,
+  even: {
+    rules: 'Welcome to the Brain Games! \nAnswer "yes" if number even otherwise answer "no".',
+  },
+};
+
+export { type, gameMethods, gameQuestions };

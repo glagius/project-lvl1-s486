@@ -1,26 +1,26 @@
 install: 
-				npm install
+	npm install
 
 start: 
-		npx babel-node 'src/bin/brain-games.js'
+	npx babel-node 'src/bin/brain-games.js'
 
-lint: 
-		npx eslint 'src'
+lint:
+	npx eslint '.'
 
 even: 
-		npx babel-node 'src/bin/brain-even.js'
+	npx babel-node 'src/bin/brain-even.js'
 
 calc:
-		npx babel-node 'src/bin/brain-calc.js'
+	npx babel-node 'src/bin/brain-calc.js'
 
 gcd:
-		npx babel-node 'src/bin/brain-gcd.js'
+	npx babel-node 'src/bin/brain-gcd.js'
 
 arithprog:
-		npx babel-node 'src/bin/brain-arithprog.js'
+	npx babel-node 'src/bin/brain-arithprog.js'
 
-prime: 
-		npx babel-node 'src/bin/brain-prime.js'
+prime:
+	npx babel-node 'src/bin/brain-prime.js'
 
 publish: lint
-				npm publish
+	npm publish
