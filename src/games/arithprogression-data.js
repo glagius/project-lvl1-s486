@@ -1,4 +1,5 @@
-import { randomNum, questions } from '..';
+import { game, commonQuestions as questions } from '..';
+import { randomNum } from '../utils';
 
 const type = 'arithprog';
 const generateNums = (init, dif, func, amount = 10) => {
@@ -45,4 +46,7 @@ const gameQuestions = {
     rules: 'Welcome to the Brain Games! \nWhat number is missing in the progression.',
   },
 };
-export { type, gameMethods, gameQuestions };
+
+const startGame = () => game(type, gameMethods, gameQuestions);
+
+export default startGame;

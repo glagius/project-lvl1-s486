@@ -1,4 +1,5 @@
-import { randomNum, questions } from '..';
+import { game, commonQuestions as questions } from '..';
+import { randomNum } from '../utils';
 
 const type = 'prime';
 const getExpression = () => randomNum(100);
@@ -21,4 +22,7 @@ const gameQuestions = {
     rules: 'Welcome to the Brain Games! \nAnswer "yes" if given number is prime. Otherwise answer "no".',
   },
 };
-export { type, gameMethods, gameQuestions };
+
+const startGame = () => game(type, gameMethods, gameQuestions);
+
+export default startGame;

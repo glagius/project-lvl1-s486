@@ -1,4 +1,5 @@
-import { randomNum, questions } from '..';
+import { game, commonQuestions as questions } from '..';
+import { randomNum } from '../utils';
 
 const type = 'even';
 
@@ -13,4 +14,6 @@ const gameQuestions = {
   },
 };
 
-export { type, gameMethods, gameQuestions };
+const startGame = () => game(type, gameMethods, gameQuestions);
+
+export default startGame;

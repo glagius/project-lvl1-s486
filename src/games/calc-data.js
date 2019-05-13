@@ -1,4 +1,5 @@
-import { randomNum, getNums, questions } from '..';
+import { game, commonQuestions as questions } from '..';
+import { randomNum, getNums } from '../utils';
 
 const type = 'calc';
 const getExpressionType = () => {
@@ -39,4 +40,6 @@ const gameQuestions = {
     rules: 'Welcome to the Brain Games! \nWhat is the result of the expression?',
   },
 };
-export { type, gameMethods, gameQuestions };
+const startGame = () => game(type, gameMethods, gameQuestions);
+
+export default startGame;

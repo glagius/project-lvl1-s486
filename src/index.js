@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 
-const questions = {
+const commonQuestions = {
   user: {
     name: 'What is your name? ',
   },
@@ -14,14 +14,11 @@ const questions = {
   },
 };
 const askQuestion = text => readlineSync.question(text);
-const userName = () => askQuestion(questions.user.name);
-
-const getNums = str => str.match(/\d+/g).map(el => Number(el));
-const randomNum = (grade = 100) => Math.ceil(Math.random() * grade);
+const userName = () => askQuestion(commonQuestions.user.name);
 
 const turnQuestion = (question) => {
-  console.log(questions.game.q, question);
-  return askQuestion(questions.game.answer);
+  console.log(commonQuestions.game.q, question);
+  return askQuestion(commonQuestions.game.answer);
 };
 
 // Data for game:
@@ -32,42 +29,40 @@ const turnQuestion = (question) => {
 const gameData = (user, turn, question, answer) => ({
   user, turn, question, answer,
 });
-const startGame = (type, methods, gameQuestions, maxIter = 3) => {
+const gameTurn = (turnData, questions, gameLength, iter = 0) => {
+  if (iter === gameLength) {
+    console.log(`${questions.game.finish}${turnData.user}!`);
+    return;
+  }
+
+  const question = turnData.question();
+
+  // Here is string that user writes in console
+  const turnAnswer = turnData.turn(question).toLowerCase();
+  const correctAnswer = turnData.answer(question).toString().toLowerCase();
+  const correct = turnAnswer === correctAnswer;
+
+  if (correct) {
+    console.log(questions.game.success);
+    gameTurn(turnData, questions, gameLength, iter + 1);
+    return;
+  }
+  console.log(`"${turnAnswer}"${questions.game.error}"${correctAnswer}"`);
+  console.log(`${questions.game.continue}${turnData.user}!`);
+};
+
+const game = (type, methods, questions, maxIter = 3) => {
   const { getExpression, getAnswer } = methods;
-  console.log(gameQuestions[type].rules);
+  console.log(questions[type].rules);
   const user = userName();
   const data = gameData(user, turnQuestion, getExpression, getAnswer);
-
-  const gameTurn = (turnData, iter = 0) => {
-    if (iter === maxIter) {
-      console.log(`${gameQuestions.game.finish}${turnData.user}!`);
-      return;
-    }
-
-    const question = turnData.question();
-
-    // Here is string that user writes in console
-    const turnAnswer = turnData.turn(question).toLowerCase();
-    const correctAnswer = turnData.answer(question).toString().toLowerCase();
-    const correct = turnAnswer === correctAnswer;
-
-    if (correct) {
-      console.log(gameQuestions.game.success);
-      gameTurn(turnData, iter + 1);
-      return;
-    }
-    console.log(`"${turnAnswer}"${gameQuestions.game.error}"${correctAnswer}"`);
-    console.log(`${gameQuestions.game.continue}${turnData.user}!`);
-  };
-  return gameTurn(data);
+  return gameTurn(data, questions, maxIter);
 };
 
 export {
-  questions,
+  commonQuestions,
   gameData,
   turnQuestion,
   userName,
-  randomNum,
-  getNums,
-  startGame,
+  game,
 };

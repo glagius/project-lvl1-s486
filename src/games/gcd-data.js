@@ -1,4 +1,5 @@
-import { randomNum, getNums, questions } from '..';
+import { game, commonQuestions as questions } from '..';
+import { randomNum, getNums } from '../utils';
 
 const type = 'gcd';
 
@@ -33,4 +34,6 @@ const gameQuestions = {
     rules: 'Welcome to the Brain Games! \nFind the greatest common divisor of given numbers.',
   },
 };
-export { type, gameMethods, gameQuestions };
+const startGame = () => game(type, gameMethods, gameQuestions);
+
+export default startGame;

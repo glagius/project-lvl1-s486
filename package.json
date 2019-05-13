@@ -1,6 +1,6 @@
 {
   "name": "elb-braingames_hexproj",
-  "version": "1.4.0",
+  "version": "1.6.0",
   "description": "Hexlet first project",
   "main": "dist/index.js",
   "bin": {
