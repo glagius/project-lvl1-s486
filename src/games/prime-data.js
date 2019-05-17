@@ -1,28 +1,28 @@
 import { game, commonQuestions as questions } from '..';
-import { randomNum } from '../utils';
+import randomInt from '../utils';
 
-const type = 'prime';
-const getExpression = () => randomNum(100);
-const isPrime = (num) => {
+const rules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const getDividers = (num) => {
+  const dividers = [];
   for (let i = 2; i <= num; i += 1) {
-    if (num % i === 0 && i !== num) {
-      return 'no';
+    if (num % i !== 0 && i === num) {
+      dividers.push(i);
     }
   }
-  return 'yes';
+  return dividers;
+};
+const isPrime = arr => (arr.length === 2 ? 'yes' : 'no');
+
+const makeData = () => {
+  const num = randomInt();
+  const answer = isPrime(getDividers(num));
+  return { question: num, answer };
 };
 
-const gameMethods = {
-  getExpression,
-  getAnswer: isPrime,
+const startGame = () => {
+  console.log(questions.greetings);
+  console.log(rules);
+  return game(makeData, questions);
 };
-const gameQuestions = {
-  ...questions,
-  prime: {
-    rules: 'Welcome to the Brain Games! \nAnswer "yes" if given number is prime. Otherwise answer "no".',
-  },
-};
-
-const startGame = () => game(type, gameMethods, gameQuestions);
 
 export default startGame;

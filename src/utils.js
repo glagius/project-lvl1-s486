@@ -1,4 +1,3 @@
-const getNums = str => str.match(/\d+/g).map(el => Number(el));
-const randomNum = (grade = 100) => Math.ceil(Math.random() * grade);
+const randomInt = (min = 1, max = 100) => Math.floor(min + Math.random() * (max + 1 - min));
 
-export { getNums, randomNum };
+export default randomInt;

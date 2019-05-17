@@ -1,24 +1,21 @@
 import readlineSync from 'readline-sync';
 
 const commonQuestions = {
-  user: {
-    name: 'What is your name? ',
-  },
-  game: {
-    q: 'Question: ',
-    a: 'You answer: ',
-    success: 'Correct!',
-    finish: 'Congratulations, ',
-    error: ' is wrong answer :(. Correct answer is ',
-    continue: 'Let\'s try again, ',
-  },
+  name: 'What is your name? ',
+  greetings: 'Welcome to the Brain Games!',
+  q: 'Question: ',
+  a: 'You answer: ',
+  success: 'Correct!',
+  finish: 'Congratulations, ',
+  error: ' is wrong answer :(. Correct answer is ',
+  continue: 'Let\'s try again, ',
 };
 const askQuestion = text => readlineSync.question(text);
-const userName = () => askQuestion(commonQuestions.user.name);
+const userName = () => askQuestion(commonQuestions.name);
 
-const turnQuestion = (question) => {
-  console.log(commonQuestions.game.q, question);
-  return askQuestion(commonQuestions.game.answer);
+const getAnswer = (question) => {
+  console.log(commonQuestions.q, question);
+  return askQuestion(commonQuestions.answer);
 };
 
 // Data for game:
@@ -26,43 +23,35 @@ const turnQuestion = (question) => {
 // turn: turn method
 // question: data for turn question
 // getAnswer: method witch return correct question answer
-const gameData = (user, turn, question, answer) => ({
-  user, turn, question, answer,
-});
-const gameTurn = (turnData, questions, gameLength, iter = 0) => {
+const gameTurn = (user, turnMethods, questions, gameLength, iter = 0) => {
   if (iter === gameLength) {
-    console.log(`${questions.game.finish}${turnData.user}!`);
+    console.log(`${questions.finish}${user}!`);
     return;
   }
-
-  const question = turnData.question();
-
+  const { question, answer } = turnMethods();
+  const turnQuestion = getAnswer(question);
   // Here is string that user writes in console
-  const turnAnswer = turnData.turn(question).toLowerCase();
-  const correctAnswer = turnData.answer(question).toString().toLowerCase();
+  const turnAnswer = turnQuestion.toLowerCase();
+  const correctAnswer = answer.toString();
   const correct = turnAnswer === correctAnswer;
 
   if (correct) {
-    console.log(questions.game.success);
-    gameTurn(turnData, questions, gameLength, iter + 1);
+    console.log(questions.success);
+    gameTurn(user, turnMethods, questions, gameLength, iter + 1);
     return;
   }
-  console.log(`"${turnAnswer}"${questions.game.error}"${correctAnswer}"`);
-  console.log(`${questions.game.continue}${turnData.user}!`);
+  console.log(`"${turnAnswer}"${questions.error}"${correctAnswer}"`);
+  console.log(`${questions.continue}${user}!`);
 };
 
-const game = (type, methods, questions, maxIter = 3) => {
-  const { getExpression, getAnswer } = methods;
-  console.log(questions[type].rules);
+const game = (gameMethods, questions, maxIter = 3) => {
   const user = userName();
-  const data = gameData(user, turnQuestion, getExpression, getAnswer);
-  return gameTurn(data, questions, maxIter);
+  return gameTurn(user, gameMethods, questions, maxIter);
 };
 
 export {
   commonQuestions,
-  gameData,
-  turnQuestion,
+  getAnswer,
   userName,
   game,
 };

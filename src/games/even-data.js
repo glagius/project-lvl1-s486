@@ -1,19 +1,18 @@
 import { game, commonQuestions as questions } from '..';
-import { randomNum } from '../utils';
+import randomInt from '../utils';
 
-const type = 'even';
+const rules = 'Answer "yes" if number even otherwise answer "no".';
 
-const gameMethods = {
-  getExpression: randomNum,
-  getAnswer: item => (item % 2 === 0 ? 'yes' : 'no'),
-};
-const gameQuestions = {
-  ...questions,
-  even: {
-    rules: 'Welcome to the Brain Games! \nAnswer "yes" if number even otherwise answer "no".',
-  },
+const makeData = () => {
+  const num = randomInt();
+  const answer = num % 2 === 0 ? 'yes' : 'no';
+  return { question: num, answer };
 };
 
-const startGame = () => game(type, gameMethods, gameQuestions);
+const startGame = () => {
+  console.log(questions.greetings);
+  console.log(rules);
+  return game(makeData, questions);
+};
 
 export default startGame;
