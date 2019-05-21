@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 
-const commonQuestions = {
+const questions = {
   name: 'What is your name? ',
   greetings: 'Welcome to the Brain Games!',
   q: 'Question: ',
@@ -11,24 +11,23 @@ const commonQuestions = {
   continue: 'Let\'s try again, ',
 };
 const askQuestion = text => readlineSync.question(text);
-const userName = () => askQuestion(commonQuestions.name);
+const userName = () => askQuestion(questions.name);
 
 const getAnswer = (question) => {
-  console.log(commonQuestions.q, question);
-  return askQuestion(commonQuestions.answer);
+  if (question instanceof Array) {
+    console.log(questions.q, ...question);
+  } else {
+    console.log(questions.q, question);
+  }
+  return askQuestion(questions.answer);
 };
 
-// Data for game:
-// user: method witch gonna take userName
-// turn: turn method
-// question: data for turn question
-// getAnswer: method witch return correct question answer
-const gameTurn = (user, turnMethods, questions, gameLength, iter = 0) => {
+const gameTurn = (user, gameData, gameQuestions, gameLength, iter = 0) => {
   if (iter === gameLength) {
-    console.log(`${questions.finish}${user}!`);
+    console.log(`${gameQuestions.finish}${user}!`);
     return;
   }
-  const { question, answer } = turnMethods();
+  const { question, answer } = gameData();
   const turnQuestion = getAnswer(question);
   // Here is string that user writes in console
   const turnAnswer = turnQuestion.toLowerCase();
@@ -36,22 +35,20 @@ const gameTurn = (user, turnMethods, questions, gameLength, iter = 0) => {
   const correct = turnAnswer === correctAnswer;
 
   if (correct) {
-    console.log(questions.success);
-    gameTurn(user, turnMethods, questions, gameLength, iter + 1);
+    console.log(gameQuestions.success);
+    gameTurn(user, gameData, gameQuestions, gameLength, iter + 1);
     return;
   }
-  console.log(`"${turnAnswer}"${questions.error}"${correctAnswer}"`);
-  console.log(`${questions.continue}${user}!`);
+  console.log(`"${turnAnswer}"${gameQuestions.error}"${correctAnswer}"`);
+  console.log(`${gameQuestions.continue}${user}!`);
 };
 
-const game = (gameMethods, questions, maxIter = 3) => {
+const game = (gameData, description, maxIter) => {
+  console.log(questions.greetings);
+  console.log(description);
+
   const user = userName();
-  return gameTurn(user, gameMethods, questions, maxIter);
+  return gameTurn(user, gameData, questions, maxIter);
 };
 
-export {
-  commonQuestions,
-  getAnswer,
-  userName,
-  game,
-};
+export { userName, game };

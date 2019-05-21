@@ -1,36 +1,25 @@
-import { game, commonQuestions as questions } from '..';
-import randomInt from '../utils';
+import { game } from '..';
+import { randomInt } from '../utils';
 
-const rules = 'What is the result of the expression?';
-const getExpressionType = () => {
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-  return getRandomInt(1, 4);
-};
+const description = 'What is the result of the expression?';
+
 const makeData = () => {
-  const num1 = randomInt();
-  const num2 = randomInt();
-  const expressionType = getExpressionType();
-  const operations = {
-    1: `${num1} + ${num2}`,
-    2: `${num1} - ${num2}`,
-    3: `${num1} * ${num2}`,
+  const num1 = randomInt(1, 100);
+  const num2 = randomInt(1, 100);
+  const expressionIndex = randomInt(0, 2);
+  const makeExpression = (a, b, sign) => `${a} ${sign} ${b}`;
+  const signs = ['+', '-', '*'];
+  const expressions = {
+    0: (a, b) => a + b,
+    1: (a, b) => a - b,
+    2: (a, b) => a * b,
   };
-  const getResult = {
-    1: (a, b) => a + b,
-    2: (a, b) => a - b,
-    3: (a, b) => a * b,
-  };
+  console.log('expT = ', expressionIndex, 'Exp = ', expressions[expressionIndex]);
   return {
-    question: operations[expressionType],
-    answer: getResult[expressionType](num1, num2),
+    question: makeExpression(num1, num2, signs[expressionIndex]),
+    answer: expressions[expressionIndex](num1, num2),
   };
 };
-const startGame = () => {
-  console.log(questions.greetings);
-  console.log(rules);
-  return game(makeData, questions);
-};
+const startGame = () => game(makeData, description, 3);
 
 export default startGame;

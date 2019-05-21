@@ -1,28 +1,23 @@
-import { game, commonQuestions as questions } from '..';
-import randomInt from '../utils';
+import { game } from '..';
+import { randomInt } from '../utils';
 
-const rules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-const getDividers = (num) => {
-  const dividers = [];
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+const isPrime = (num) => {
   for (let i = 2; i <= num; i += 1) {
-    if (num % i !== 0 && i === num) {
-      dividers.push(i);
+    if (num % i === 0 && i !== num) {
+      return true;
     }
   }
-  return dividers;
+  return false;
 };
-const isPrime = arr => (arr.length === 2 ? 'yes' : 'no');
 
 const makeData = () => {
-  const num = randomInt();
-  const answer = isPrime(getDividers(num));
-  return { question: num, answer };
+  const question = randomInt(1, 100);
+  const answer = isPrime(question) ? 'yes' : 'no';
+  return { question, answer };
 };
 
-const startGame = () => {
-  console.log(questions.greetings);
-  console.log(rules);
-  return game(makeData, questions);
-};
+const startGame = () => game(makeData, description, 3);
 
 export default startGame;
