@@ -1,5 +1,5 @@
 import { game } from '..';
-import { randomInt } from '../utils';
+import randomInt from '../utils';
 
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
@@ -19,6 +19,4 @@ const makeData = () => {
   return { question, answer };
 };
 
-const startGame = () => game(makeData, description, 3);
-
-export default startGame;
+export default () => game(makeData, description);

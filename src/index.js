@@ -1,30 +1,17 @@
 import readlineSync from 'readline-sync';
 
-const questions = {
-  name: 'What is your name? ',
-  greetings: 'Welcome to the Brain Games!',
-  q: 'Question: ',
-  a: 'You answer: ',
-  success: 'Correct!',
-  finish: 'Congratulations, ',
-  error: ' is wrong answer :(. Correct answer is ',
-  continue: 'Let\'s try again, ',
-};
 const askQuestion = text => readlineSync.question(text);
-const userName = () => askQuestion(questions.name);
+const userName = () => askQuestion('What is your name? ');
+const maxIter = 3;
 
 const getAnswer = (question) => {
-  if (question instanceof Array) {
-    console.log(questions.q, ...question);
-  } else {
-    console.log(questions.q, question);
-  }
-  return askQuestion(questions.answer);
+  console.log('Question: ', question);
+  return askQuestion('You answer: ');
 };
 
-const gameTurn = (user, gameData, gameQuestions, gameLength, iter = 0) => {
-  if (iter === gameLength) {
-    console.log(`${gameQuestions.finish}${user}!`);
+const gameTurn = (user, gameData, iter) => {
+  if (iter === maxIter) {
+    console.log(`Congratulations, ${user}!`);
     return;
   }
   const { question, answer } = gameData();
@@ -35,20 +22,20 @@ const gameTurn = (user, gameData, gameQuestions, gameLength, iter = 0) => {
   const correct = turnAnswer === correctAnswer;
 
   if (correct) {
-    console.log(gameQuestions.success);
-    gameTurn(user, gameData, gameQuestions, gameLength, iter + 1);
+    console.log('Correct!');
+    gameTurn(user, gameData, iter + 1);
     return;
   }
-  console.log(`"${turnAnswer}"${gameQuestions.error}"${correctAnswer}"`);
-  console.log(`${gameQuestions.continue}${user}!`);
+  console.log(`"${turnAnswer}" is wrong answer :(. Correct answer is "${correctAnswer}"`);
+  console.log(`Let's try again, ${user}!`);
 };
 
-const game = (gameData, description, maxIter) => {
-  console.log(questions.greetings);
+const game = (gameData, description) => {
+  console.log('Welcome to the Brain Games!');
   console.log(description);
 
   const user = userName();
-  return gameTurn(user, gameData, questions, maxIter);
+  return gameTurn(user, gameData, 0);
 };
 
 export { userName, game };
