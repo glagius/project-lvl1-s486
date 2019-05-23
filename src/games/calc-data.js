@@ -1,4 +1,4 @@
-import { game } from '..';
+import game from '..';
 import randomInt from '../utils';
 
 const description = 'What is the result of the expression?';

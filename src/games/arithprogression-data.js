@@ -1,4 +1,4 @@
-import { game } from '..';
+import game from '..';
 import randomInt from '../utils';
 
 const description = 'What number is missing in the progression.';
@@ -17,8 +17,8 @@ const makeData = () => {
   const dif = randomInt(1, 10);
   const arr = generateNums(init, dif, length);
   const hiddenElementIndex = randomInt(0, length);
-  const question = hideArrElement(hiddenElementIndex, arr).toString();
-  const answer = arr[hiddenElementIndex];
+  const question = hideArrElement(hiddenElementIndex, arr).join(' ');
+  const answer = arr[hiddenElementIndex].toString();
   return { question, answer };
 };
 

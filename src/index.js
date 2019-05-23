@@ -1,41 +1,36 @@
 import readlineSync from 'readline-sync';
 
-const askQuestion = text => readlineSync.question(text);
-const userName = () => askQuestion('What is your name? ');
-const maxIter = 3;
+const roundsAmount = 3;
 
 const getAnswer = (question) => {
   console.log('Question: ', question);
-  return askQuestion('You answer: ');
+  return readlineSync.question('You answer: ');
 };
-
-const gameTurn = (user, gameData, iter) => {
-  if (iter === maxIter) {
-    console.log(`Congratulations, ${user}!`);
-    return;
-  }
+const startRound = (gameData) => {
   const { question, answer } = gameData();
   const turnQuestion = getAnswer(question);
-  // Here is string that user writes in console
   const turnAnswer = turnQuestion.toLowerCase();
-  const correctAnswer = answer.toString();
-  const correct = turnAnswer === correctAnswer;
+  const isCorrectAnswer = turnAnswer === answer;
 
-  if (correct) {
+  if (isCorrectAnswer) {
     console.log('Correct!');
-    gameTurn(user, gameData, iter + 1);
-    return;
+    return true;
   }
-  console.log(`"${turnAnswer}" is wrong answer :(. Correct answer is "${correctAnswer}"`);
-  console.log(`Let's try again, ${user}!`);
+  console.log(`"${turnAnswer}" is wrong answer :(. Correct answer is "${answer}"`);
+  return false;
 };
-
 const game = (gameData, description) => {
   console.log('Welcome to the Brain Games!');
   console.log(description);
 
-  const user = userName();
-  return gameTurn(user, gameData, 0);
+  const user = readlineSync.question('What is your name? ');
+  for (let i = 0; i <= roundsAmount; i += 1) {
+    if (!startRound(gameData)) {
+      console.log(`Let's try again, ${user}!`);
+      return;
+    }
+  }
+  console.log(`Congratulations, ${user}!`);
 };
 
-export { userName, game };
+export default game;
